@@ -38,6 +38,8 @@
   ],
   "exclude": [
     "node_modules",
-    "ZAI_Creation"
+    "ZAI_Creation",
+    "Zai_creation_2",
+    "submissions"
   ]
 }
