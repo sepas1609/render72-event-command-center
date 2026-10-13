@@ -23,8 +23,7 @@ This directory organizes each completed hackathon submission attempt in its own 
 
 ### [Submission 2: CampusPulse 360](./submission_2_campuspulse)
 - **Theme:** Spatial Campus Day-Planner & Festival Hub (`#a855f7` Electric Amethyst & Sunset Aurora)
-- **Release Tag:** `v2.0.0-submission-2`
-- **Git Branch:** `submission/2-campuspulse`
+- **Figma Design System:** [https://www.figma.com/make/zxj9fMS5uKSFW0ziLkNkgs/Design-System-for-FlagHorizon-Sentinel?p=f&t=k195pAe5QwQxbqGG-0](https://www.figma.com/make/zxj9fMS5uKSFW0ziLkNkgs/Design-System-for-FlagHorizon-Sentinel?p=f&t=k195pAe5QwQxbqGG-0)
 - **Core Vision:** Multi-track spatial planner with conflict-free scheduling and 6 bespoke creative ateliers featuring mesmerizing visual and sensory experiences.
 - **6 Highlighted Events:**
   1. `f4a7eca2...` — Second Life: Campus Repair Café (Kintsugi Gold Resin Repair Bench & Circular Carbon Gauge)
@@ -36,7 +35,6 @@ This directory organizes each completed hackathon submission attempt in its own 
 
 ---
 
-## 🚀 Live Production URL & Design Links
-- **Vercel Production:** [https://render72-command-center.vercel.app](https://render72-command-center.vercel.app)
+## 🚀 Live Production URL
+- **Vercel Production (Submission 1):** [https://render72-command-center.vercel.app](https://render72-command-center.vercel.app)
 - **GitHub Repository:** [https://github.com/sepas1609/render72-event-command-center](https://github.com/sepas1609/render72-event-command-center)
-- **Figma Design System:** [Design System for FlagHorizon Sentinel](https://www.figma.com/make/zxj9fMS5uKSFW0ziLkNkgs/Design-System-for-FlagHorizon-Sentinel?p=f&t=k195pAe5QwQxbqGG-0)

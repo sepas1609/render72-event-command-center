@@ -18,7 +18,6 @@
 - **Active Submission 1 Tag:** [`v1.0.0-submission-1`](https://github.com/sepas1609/render72-event-command-center/releases/tag/v1.0.0-submission-1)
 - **Active Submission 1 Branch:** `submission/1-flaghorizon`
 - **Official Data Source:** [Render72 Public Events API](https://render72.pages.dev)
-- **Figma Design System:** [Design System for FlagHorizon Sentinel](https://www.figma.com/make/zxj9fMS5uKSFW0ziLkNkgs/Design-System-for-FlagHorizon-Sentinel?p=f&t=k195pAe5QwQxbqGG-0)
 - **Production Health Probe:** [https://render72-command-center.vercel.app/api/health](https://render72-command-center.vercel.app/api/health)
 - **Figma Design Directive:** [Jump to Figma Design Specification](#-figma-design-directive-specification)
 
