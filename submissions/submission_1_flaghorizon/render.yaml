@@ -1,0 +1,23 @@
+# Render Deployment Manifest — FlagHorizon Sentinel CTF Command Center
+# Blueprint specification for Render PaaS deployment
+# Free-tier compatible, stateless Web Service with automated health checking.
+
+services:
+  - type: web
+    name: flaghorizon-sentinel
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: PORT
+        value: "3000"
+      - key: NODE_OPTIONS
+        value: "--max-old-space-size=1536"
