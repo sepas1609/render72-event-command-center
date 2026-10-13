@@ -24,6 +24,9 @@ interface CtfState {
   briefingEventId: string | null;
   /* bookmarked "watch" events */
   bookmarks: string[];
+  /* submission showcase edition (1-5) */
+  activeEdition: string;
+  setActiveEdition: (edition: string) => void;
   /* actions */
   setView: (v: ViewMode) => void;
   setSort: (s: SortKey) => void;
@@ -40,6 +43,8 @@ interface CtfState {
 export const useCtfStore = create<CtfState>()(
   persist(
     (set) => ({
+      activeEdition: "1",
+      setActiveEdition: (ed) => set({ activeEdition: ed }),
       view: "grid",
       sort: "date",
       search: "",

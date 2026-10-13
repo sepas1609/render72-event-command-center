@@ -23,6 +23,8 @@ export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const audioEnabled = useCtfStore((s) => s.audioEnabled);
   const toggleAudio = useCtfStore((s) => s.toggleAudio);
+  const activeEdition = useCtfStore((s) => s.activeEdition);
+  const setActiveEdition = useCtfStore((s) => s.setActiveEdition);
   const play = useAudioCue();
 
   useEffect(() => {
@@ -101,16 +103,33 @@ export function Nav() {
 
           {/* Action Tools & Status */}
           <div className="flex items-center gap-2.5">
-            {/* Live API Pulse Indicator */}
-            <div
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-[0.65rem] text-emerald-400"
-              title="Connected to Render72 live API"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              <span>API Live</span>
+            {/* Submission Showcase Edition Switcher */}
+            <div className="hidden lg:flex items-center gap-1 rounded-lg border border-white/10 bg-black/40 p-0.5 font-mono text-[0.65rem]">
+              <span className="text-muted-foreground/60 px-1 text-[0.6rem]">Submissions:</span>
+              {[
+                { id: "1", label: "1: Cyber" },
+                { id: "2", label: "2: Festival" },
+                { id: "3", label: "3: Clash" },
+                { id: "4", label: "4: Maker" },
+                { id: "5", label: "5: Polymath" },
+              ].map((ed) => (
+                <button
+                  key={ed.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveEdition(ed.id);
+                    play("tick");
+                  }}
+                  className={cn(
+                    "rounded px-1.5 py-0.5 transition-all",
+                    activeEdition === ed.id
+                      ? "bg-[var(--neon)] text-black font-bold shadow-[0_0_8px_rgba(0,255,159,0.4)]"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {ed.label}
+                </button>
+              ))}
             </div>
 
             {/* Audio Toggle */}
