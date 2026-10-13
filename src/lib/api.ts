@@ -11,7 +11,10 @@ import type {
 import fallbackEventsData from "@/lib/fallback-events.json";
 import fallbackPrimaryDetailData from "@/lib/fallback-primary-detail.json";
 
-const BASE_URL = "https://render72.pages.dev";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  process.env.VITE_API_URL ||
+  "https://render72.pages.dev";
 
 /**
  * Resilient fetch wrapper with timeout and fallback logic.
