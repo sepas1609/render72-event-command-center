@@ -36,6 +36,7 @@ This directory organizes each completed hackathon submission attempt in its own 
 
 ---
 
-## 🚀 Live Production URL
+## 🚀 Live Production URL & Design Links
 - **Vercel Production:** [https://render72-command-center.vercel.app](https://render72-command-center.vercel.app)
 - **GitHub Repository:** [https://github.com/sepas1609/render72-event-command-center](https://github.com/sepas1609/render72-event-command-center)
+- **Figma Design System:** [Design System for FlagHorizon Sentinel](https://www.figma.com/make/zxj9fMS5uKSFW0ziLkNkgs/Design-System-for-FlagHorizon-Sentinel?p=f&t=k195pAe5QwQxbqGG-0)
