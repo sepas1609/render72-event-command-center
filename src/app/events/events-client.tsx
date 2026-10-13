@@ -174,15 +174,20 @@ export function EventsMatrixClient({ initialEvents }: { initialEvents: EventSumm
               </button>
             </div>
 
+            <label htmlFor="events-matrix-sort" className="sr-only">
+              Sort events by
+            </label>
             <select
+              id="events-matrix-sort"
+              aria-label="Sort events by"
               value={sortKey}
               onChange={(e) => setSortKey(e.target.value as typeof sortKey)}
               className="rounded-xl border border-white/10 bg-black/40 px-3 py-2.5 font-mono text-xs text-foreground focus:border-[var(--neon)] focus:outline-none"
             >
-              <option value="date">Sort: Earliest Date</option>
-              <option value="seats">Sort: Most Seats Left</option>
-              <option value="price">Sort: Fee (Low to High)</option>
-              <option value="team">Sort: Team Size</option>
+              <option value="date" className="bg-[#080B15] text-white">Sort: Earliest Date</option>
+              <option value="seats" className="bg-[#080B15] text-white">Sort: Most Seats Left</option>
+              <option value="price" className="bg-[#080B15] text-white">Sort: Fee (Low to High)</option>
+              <option value="team" className="bg-[#080B15] text-white">Sort: Team Size</option>
             </select>
           </div>
         </div>

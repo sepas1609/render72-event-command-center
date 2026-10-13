@@ -49,29 +49,44 @@ export function Footer() {
             <p className="font-mono text-[0.65rem] uppercase tracking-widest text-[var(--neon)]">
               operators
             </p>
-            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+            <ul className="mt-3 space-y-1 text-sm text-slate-300">
               <li>
-                <a href="#command-center" className="hover:text-foreground">
+                <a
+                  href="#command-center"
+                  className="inline-flex items-center py-1.5 hover:text-white transition-colors"
+                >
                   Command Center
                 </a>
               </li>
               <li>
-                <a href="#scoreboard" className="hover:text-foreground">
+                <a
+                  href="#scoreboard"
+                  className="inline-flex items-center py-1.5 hover:text-white transition-colors"
+                >
                   Live Scoreboard
                 </a>
               </li>
               <li>
-                <a href="#missions" className="hover:text-foreground">
+                <a
+                  href="#missions"
+                  className="inline-flex items-center py-1.5 hover:text-white transition-colors"
+                >
                   Mission Board
                 </a>
               </li>
               <li>
-                <a href="#sandbox" className="hover:text-foreground">
+                <a
+                  href="#sandbox"
+                  className="inline-flex items-center py-1.5 hover:text-white transition-colors"
+                >
                   Flag Sandbox
                 </a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-foreground">
+                <a
+                  href="#faq"
+                  className="inline-flex items-center py-1.5 hover:text-white transition-colors"
+                >
                   FAQ
                 </a>
               </li>

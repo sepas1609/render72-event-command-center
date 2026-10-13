@@ -178,14 +178,24 @@ export function SquadBuilder() {
                   Recruit Operator
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row">
+                  <label htmlFor="operator-callsign" className="sr-only">
+                    Operator Callsign
+                  </label>
                   <input
+                    id="operator-callsign"
                     type="text"
+                    aria-label="Operator Callsign"
                     value={newCallsign}
                     onChange={(e) => setNewCallsign(e.target.value)}
                     placeholder="Operator Callsign (e.g. CipherFox)"
                     className="flex-1 rounded-xl border border-white/10 bg-black/40 px-3.5 py-2 font-mono text-xs text-foreground focus:border-[var(--neon-cyan)] focus:outline-none"
                   />
+                  <label htmlFor="operator-role" className="sr-only">
+                    Select Operator Role
+                  </label>
                   <select
+                    id="operator-role"
+                    aria-label="Select Operator Role"
                     value={selectedRole}
                     onChange={(e) => setSelectedRole(e.target.value as Teammate["role"])}
                     className="rounded-xl border border-white/10 bg-black/40 px-3 py-2 font-mono text-xs text-foreground focus:border-[var(--neon-cyan)] focus:outline-none"

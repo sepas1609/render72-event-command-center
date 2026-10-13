@@ -64,17 +64,17 @@ export function Nav() {
           {/* Brand Logo */}
           <Link
             href="/"
-            className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--neon)] rounded-lg"
-            aria-label="FlagHorizon Sentinel Homepage"
+            className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--neon)] rounded-lg min-h-[44px]"
+            aria-label="FlagHorizon OS — Cyber Arena & Events Deck"
           >
             <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--neon)]/20 via-[var(--neon-cyan)]/15 to-transparent text-[var(--neon)] border border-[var(--neon)]/40 shadow-[0_0_15px_oklch(0.86_0.24_152/20%)] transition-transform group-hover:scale-105">
               <ShieldCheck className="h-5 w-5" aria-hidden="true" />
             </div>
             <div className="flex flex-col leading-tight">
               <span className="font-mono text-base font-bold tracking-tight text-foreground group-hover:text-[var(--neon)] transition-colors">
-                FlagHorizon<span className="text-[var(--neon-cyan)] font-sans ml-1 text-xs px-1.5 py-0.2 rounded bg-[var(--neon-cyan)]/10 border border-[var(--neon-cyan)]/30">OS</span>
+                FlagHorizon<span className="text-[var(--neon-cyan)] font-sans ml-1 text-xs px-1.5 py-0.2 rounded bg-[var(--neon-cyan)]/10 border border-[var(--neon-cyan)]/30 font-bold">OS</span>
               </span>
-              <span className="font-mono text-[0.62rem] uppercase tracking-widest text-muted-foreground">
+              <span className="font-mono text-[0.65rem] uppercase tracking-widest text-slate-300">
                 Cyber Arena & Events Deck
               </span>
             </div>
@@ -89,10 +89,10 @@ export function Nav() {
                   key={link.label}
                   href={link.href}
                   className={cn(
-                    "rounded-lg px-3 py-1.5 font-mono text-xs uppercase tracking-wider transition-all",
+                    "rounded-lg px-3 py-2 font-mono text-xs uppercase tracking-wider transition-all min-h-[40px] inline-flex items-center",
                     isActive
                       ? "text-[var(--neon)] bg-[var(--neon)]/15 border border-[var(--neon)]/30 shadow-[0_0_12px_oklch(0.86_0.24_152/20%)] font-semibold"
-                      : "text-muted-foreground hover:text-foreground hover:bg-white/5",
+                      : "text-slate-300 hover:text-foreground hover:bg-white/5",
                   )}
                 >
                   {link.label}
@@ -105,7 +105,7 @@ export function Nav() {
           <div className="flex items-center gap-2.5">
             {/* Submission Showcase Edition Switcher */}
             <div className="hidden lg:flex items-center gap-1 rounded-lg border border-white/10 bg-black/40 p-0.5 font-mono text-[0.65rem]">
-              <span className="text-muted-foreground/60 px-1 text-[0.6rem]">Submissions:</span>
+              <span className="text-slate-300 px-1 text-[0.6rem]">Submissions:</span>
               {[
                 { id: "1", label: "1: Cyber" },
                 { id: "2", label: "2: Festival" },
@@ -116,15 +116,16 @@ export function Nav() {
                 <button
                   key={ed.id}
                   type="button"
+                  aria-label={`Switch to Edition ${ed.label}`}
                   onClick={() => {
                     setActiveEdition(ed.id);
                     play("tick");
                   }}
                   className={cn(
-                    "rounded px-1.5 py-0.5 transition-all",
+                    "rounded px-2 py-1 transition-all min-h-[28px]",
                     activeEdition === ed.id
                       ? "bg-[var(--neon)] text-black font-bold shadow-[0_0_8px_rgba(0,255,159,0.4)]"
-                      : "text-muted-foreground hover:text-foreground",
+                      : "text-slate-300 hover:text-foreground",
                   )}
                 >
                   {ed.label}

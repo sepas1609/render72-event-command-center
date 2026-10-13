@@ -285,13 +285,14 @@ function FilterGroup({
           <button
             key={String(o.value)}
             type="button"
+            aria-label={`${label}: ${typeof o.label === "string" ? o.label : o.value}`}
             onClick={() => onChange(o.value)}
             aria-pressed={value === o.value}
             className={cn(
-              "rounded px-2 py-1 font-mono text-[0.65rem] uppercase tracking-widest transition-colors",
+              "rounded px-2.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-widest transition-colors min-h-[32px] inline-flex items-center justify-center",
               value === o.value
-                ? "bg-[var(--neon)]/15 text-[var(--neon)]"
-                : "text-muted-foreground hover:text-foreground",
+                ? "bg-[var(--neon)]/15 text-[var(--neon)] font-semibold"
+                : "text-slate-300 hover:text-foreground",
             )}
           >
             {o.label}
@@ -310,19 +311,23 @@ function SortSelect({
   onChange: (v: "date" | "seats" | "price" | "team") => void;
 }) {
   return (
-    <label className="flex items-center gap-1.5 rounded-md border border-white/10 bg-black/40 px-2 py-1 font-mono text-[0.65rem] uppercase tracking-widest text-muted-foreground">
+    <label
+      htmlFor="mission-sort-select"
+      className="flex items-center gap-1.5 rounded-md border border-white/10 bg-black/40 px-2.5 py-1.5 font-mono text-[0.65rem] uppercase tracking-widest text-slate-300 min-h-[32px]"
+    >
       <Filter className="h-3 w-3" aria-hidden />
-      sort
+      <span>Sort:</span>
       <select
-        aria-label="Sort by"
+        id="mission-sort-select"
+        aria-label="Sort missions by"
         value={value}
         onChange={(e) => onChange(e.target.value as typeof value)}
         className="bg-transparent font-mono text-[0.65rem] uppercase tracking-widest text-foreground focus:outline-none"
       >
-        <option value="date">Date</option>
-        <option value="seats">Seats left</option>
-        <option value="price">Price</option>
-        <option value="team">Team size</option>
+        <option value="date" className="bg-[#080B15] text-white">Date</option>
+        <option value="seats" className="bg-[#080B15] text-white">Seats left</option>
+        <option value="price" className="bg-[#080B15] text-white">Price</option>
+        <option value="team" className="bg-[#080B15] text-white">Team size</option>
       </select>
     </label>
   );

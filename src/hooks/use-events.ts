@@ -40,8 +40,8 @@ export const eventKeys = {
   detail: (id: string) => [...eventKeys.all, "detail", id] as const,
 };
 
-/** Hook: list of all events with 10-minute client & memory cache */
-export function useEvents() {
+/** Hook: list of all events with 10-minute client & memory cache and instant SSR initialData */
+export function useEvents(options?: { initialData?: EventSummary[] }) {
   return useQuery<EventSummary[]>({
     queryKey: eventKeys.list(),
     queryFn: async () => {
@@ -55,6 +55,7 @@ export function useEvents() {
       }
       return fresh;
     },
+    initialData: options?.initialData,
     staleTime: CACHE_TTL_MS,
     gcTime: 15 * 60 * 1000,
     retry: 2,
