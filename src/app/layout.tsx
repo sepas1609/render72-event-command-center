@@ -17,34 +17,34 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://render72-flaghorizon.onrender.com";
+const SITE_URL = "https://render72-command-center.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "FlagHorizon — Campus Capture the Flag Command Center",
-    template: "%s · FlagHorizon",
+    default: "CampusPulse 360 — Spatial Campus Day-Planner & Command Center",
+    template: "%s · CampusPulse 360",
   },
   description:
-    "FlagHorizon is a jeopardy-style campus Capture the Flag command center with live telemetry, an interactive defense map, dynamic scoring, and the full Render72 events board — engineered for security-curious students.",
-  applicationName: "FlagHorizon",
+    "CampusPulse 360 is a spatial campus day-planner and multi-track festival hub with interactive venue heatmaps, itinerary conflict solvers, and 6 creative flagship ateliers.",
+  applicationName: "CampusPulse 360",
   generator: "Next.js",
   keywords: [
-    "Capture the Flag",
-    "CTF",
-    "Cybersecurity",
-    "Web Security",
-    "Digital Forensics",
-    "Cryptography",
-    "Reverse Engineering",
-    "Campus Hackathon",
-    "Render72",
-    "Jeopardy CTF",
+    "CampusPulse 360",
+    "Spatial Day-Planner",
+    "Campus Events",
+    "Render72 Hackathon",
+    "Repair Café",
+    "Campus Photo Walk",
+    "Rangoli Duet",
+    "UX Teardown Lab",
+    "Lines in Motion",
+    "Pottery Studio",
   ],
-  authors: [{ name: "FlagHorizon Team" }],
-  creator: "FlagHorizon Team",
-  publisher: "FlagHorizon Team",
-  category: "cybersecurity",
+  authors: [{ name: "CampusPulse 360 Team" }],
+  creator: "CampusPulse 360 Team",
+  publisher: "CampusPulse 360 Team",
+  category: "events",
   alternates: {
     canonical: "/",
   },
@@ -54,9 +54,9 @@ export const metadata: Metadata = {
     email: false,
   },
   openGraph: {
-    title: "FlagHorizon — Campus Capture the Flag Command Center",
+    title: "CampusPulse 360 — Spatial Campus Day-Planner & Command Center",
     description:
-      "Live CTF command center with telemetry, defense map, dynamic scoring, and the full Render72 campus events board. A cybersecurity arena for student teams.",
+      "Synchronize your campus weekend across 30 happenings with zero itinerary collisions, studio repair workflows, and visual storytelling expeditions.",
     url: SITE_URL,
     siteName: "FlagHorizon",
     type: "website",
