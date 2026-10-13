@@ -15,9 +15,11 @@ import {
   Users,
   Wifi,
   WifiOff,
+  Zap,
 } from "lucide-react";
 import type { EventSummary } from "@/lib/types";
 import { useCtfStore } from "@/lib/ctf-store";
+import { isFeaturedSubmissionEvent } from "@/lib/featured-events";
 import {
   cn,
   colorForRegistration,
@@ -50,6 +52,8 @@ export function MissionCard({
   const bookmarks = useCtfStore((s) => s.bookmarks);
   const toggleBookmark = useCtfStore((s) => s.toggleBookmark);
   const isBookmarked = bookmarks.includes(event.id);
+  const activeEdition = useCtfStore((s) => s.activeEdition);
+  const isHeroInActiveEdition = isFeaturedSubmissionEvent(event.id, activeEdition);
 
   const status = colorForStatus(event.event_status);
   const reg = colorForRegistration(event.registration_status);
@@ -98,6 +102,11 @@ export function MissionCard({
           {event.is_featured && (
             <span className="inline-flex items-center gap-1 rounded-full border border-[var(--neon-amber)]/40 bg-[var(--neon-amber)]/10 px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest text-[var(--neon-amber)] backdrop-blur">
               <Sparkles className="h-2.5 w-2.5" aria-hidden /> featured
+            </span>
+          )}
+          {isHeroInActiveEdition && (
+            <span className="inline-flex items-center gap-1 rounded-full border border-[var(--neon-cyan)]/40 bg-[var(--neon-cyan)]/20 px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest text-[var(--neon-cyan)] backdrop-blur shadow-[0_0_12px_rgba(0,240,255,0.3)]">
+              <Zap className="h-2.5 w-2.5" aria-hidden /> interactive console
             </span>
           )}
         </div>
@@ -237,17 +246,22 @@ export function MissionCard({
                 openBriefing(event.id);
                 onOpen?.();
               }}
-              className="inline-flex items-center gap-1 rounded-md bg-[var(--neon)]/10 px-2 py-1.5 font-mono text-[0.68rem] text-[var(--neon)] transition-colors hover:bg-[var(--neon)]/20"
+              className="inline-flex items-center gap-1 rounded-md bg-white/10 px-2.5 py-1.5 font-mono text-[0.68rem] text-foreground transition-colors hover:bg-white/20"
               title="Quick modal preview"
             >
-              quick preview
+              preview
             </button>
             <Link
               href={`/events/${event.id}`}
-              className="inline-flex items-center gap-1 rounded-md bg-[var(--neon)] px-2.5 py-1.5 font-mono text-[0.68rem] font-bold text-[var(--primary-foreground)] transition-colors hover:brightness-110"
+              className={cn(
+                "inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 font-mono text-[0.68rem] font-bold transition-all hover:brightness-110",
+                isHeroInActiveEdition
+                  ? "bg-gradient-to-r from-[var(--neon)] to-[var(--neon-cyan)] text-[var(--primary-foreground)] shadow-[0_0_15px_oklch(0.86_0.24_152/25%)]"
+                  : "bg-[var(--neon)] text-[var(--primary-foreground)]"
+              )}
               title="Open full dedicated event dossier"
             >
-              dossier
+              {isHeroInActiveEdition ? "⚡ launch console" : "dossier"}
               <ChevronRight className="h-3 w-3" aria-hidden />
             </Link>
           </div>

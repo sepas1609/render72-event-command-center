@@ -419,9 +419,14 @@ export function EventsMatrixClient({ initialEvents }: { initialEvents: EventSumm
 
                     <Link
                       href={`/events/${event.id}`}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--neon)]/40 bg-[var(--neon)]/10 px-3 py-1.5 font-mono text-xs font-semibold text-[var(--neon)] transition-all hover:bg-[var(--neon)] hover:text-[var(--primary-foreground)]"
+                      className={cn(
+                        "inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-xs font-semibold transition-all",
+                        isFeaturedSubmissionEvent(event.id)
+                          ? "bg-[var(--neon)] text-[var(--primary-foreground)] shadow-[0_0_15px_rgba(0,255,159,0.3)] hover:brightness-110"
+                          : "border border-[var(--neon)]/40 bg-[var(--neon)]/10 text-[var(--neon)] hover:bg-[var(--neon)] hover:text-[var(--primary-foreground)]"
+                      )}
                     >
-                      <span>Briefing</span>
+                      <span>{isFeaturedSubmissionEvent(event.id) ? "⚡ Launch Console" : "Briefing"}</span>
                       <ChevronRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>

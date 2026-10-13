@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useCtfStore } from "@/lib/ctf-store";
 import { useEvent } from "@/hooks/use-events";
+import { FeaturedEventCreativeSuite } from "@/components/event-interactive-widgets/featured-event-suite";
 import {
   cn,
   colorForRegistration,
@@ -212,6 +213,11 @@ function BriefingBody({ id }: { id: string }) {
               closes {formatIstDate(ev.registration_deadline, { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })}
             </p>
           </div>
+        </div>
+
+        {/* Tailored Interactive Hero Widget */}
+        <div className="mt-6">
+          <FeaturedEventCreativeSuite eventId={ev.id} />
         </div>
 
         {/* Description */}
