@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import dynamic from "next/dynamic";
 import { Nav } from "@/components/nav";
 import { LiveTicker } from "@/components/live-ticker";
 import { Hero } from "@/components/hero";
@@ -8,11 +9,19 @@ import { CommandCenter } from "@/components/command-center";
 import { Scoreboard } from "@/components/scoreboard";
 import { SquadBuilder } from "@/components/squad-builder";
 import { MissionGrid } from "@/components/mission-grid";
-import { MissionBriefing } from "@/components/mission-briefing";
-import { SandboxWidget } from "@/components/sandbox-widget";
 import { Faq } from "@/components/faq";
 import { Footer } from "@/components/footer";
 import { ErrorBoundary } from "@/components/error-boundary";
+
+const MissionBriefing = dynamic(
+  () => import("@/components/mission-briefing").then((mod) => mod.MissionBriefing),
+  { ssr: false },
+);
+
+const SandboxWidget = dynamic(
+  () => import("@/components/sandbox-widget").then((mod) => mod.SandboxWidget),
+  { ssr: false },
+);
 import { useEvents } from "@/hooks/use-events";
 import { deriveScoreboard, pickPrimaryCtfEvent } from "@/lib/api";
 

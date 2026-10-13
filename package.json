@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "mkdir -p dist && cp -r public/* dist/ 2>/dev/null || true",
     "start": "next start",
     "lint": "next lint"
   },

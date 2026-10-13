@@ -48,9 +48,9 @@ export function MissionGrid({
   const play = useAudioCue();
   const [localSearch, setLocalSearch] = useState(search);
 
-  // Debounce search input — write back to the store after 200ms idle
+  // Debounce search input — write back to the store after 300ms idle
   useEffect(() => {
-    const id = setTimeout(() => setSearch(localSearch), 200);
+    const id = setTimeout(() => setSearch(localSearch), 300);
     return () => clearTimeout(id);
   }, [localSearch, setSearch]);
 

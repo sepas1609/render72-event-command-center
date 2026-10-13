@@ -98,6 +98,12 @@ sequenceDiagram
    - Glassmorphic panels with backdrop filters, scanline animations, canvas matrix rain, and Lucide icons.
    - Full keyboard navigation, semantic ARIA landmarks, and WCAG 2.1 AA compliant color ratios.
 
+6. **High-Concurrency Scale Architecture (5k–10k Users):**
+   - **10-Minute Multi-Tier Caching:** Implements `localStorage` persistence and TanStack Query in-memory caching (`staleTime: 10m`, `gcTime: 15m`), eliminating redundant network requests under evaluation traffic spikes.
+   - **300ms Debounced Filtering:** Real-time search inputs and category filters are debounced to prevent client-side main thread stalls.
+   - **Dynamic Code-Splitting:** Heavy modal drawers, challenge sandboxes, and schedule breakdown tables are code-split using `next/dynamic` and React `Suspense`.
+   - **Immutable Edge Caching:** Strict HTTP headers for `/_next/static/(.*)` and `/assets/(.*)` with `public, max-age=31536000, immutable`.
+
 ---
 
 ## 📁 Repository Architecture

@@ -20,9 +20,11 @@ import type { EventSummary } from "@/lib/types";
 import { cn, colorForStatus, formatINR, formatIstDate } from "@/lib/utils";
 import { useAudioCue } from "@/hooks/use-audio-cue";
 import { isFeaturedSubmissionEvent } from "@/lib/featured-events";
+import { useDebounce } from "@/hooks/use-debounce";
 
 export function EventsMatrixClient({ initialEvents }: { initialEvents: EventSummary[] }) {
   const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 300);
   const [categoryFilter, setCategoryFilter] = useState<"all" | "technical" | "cultural">("all");
   const [modeFilter, setModeFilter] = useState<"all" | "offline" | "online">("all");
   const [statusFilter, setStatusFilter] = useState<"all" | "ACTIVE" | "COMPLETED" | "CLOSED">("all");
@@ -32,7 +34,7 @@ export function EventsMatrixClient({ initialEvents }: { initialEvents: EventSumm
   const play = useAudioCue();
 
   const filteredEvents = useMemo(() => {
-    const q = search.trim().toLowerCase();
+    const q = debouncedSearch.trim().toLowerCase();
     const list = initialEvents.filter((ev) => {
       if (featuredOnly && !isFeaturedSubmissionEvent(ev.id)) return false;
       if (categoryFilter === "technical" && !ev.is_technical) return false;
@@ -71,7 +73,7 @@ export function EventsMatrixClient({ initialEvents }: { initialEvents: EventSumm
         break;
     }
     return sorted;
-  }, [initialEvents, search, categoryFilter, modeFilter, statusFilter, sortKey, featuredOnly]);
+  }, [initialEvents, debouncedSearch, categoryFilter, modeFilter, statusFilter, sortKey, featuredOnly]);
 
   const activeCount = initialEvents.filter((e) => e.event_status === "ACTIVE").length;
   const technicalCount = initialEvents.filter((e) => e.is_technical).length;
