@@ -36,3 +36,4 @@ next-env.d.ts
 # ZAI Raw Archives
 ZAI_Creation/
 Zai_creation_2/
+.env*

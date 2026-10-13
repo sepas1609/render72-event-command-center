@@ -15,6 +15,8 @@ import { MatrixRain } from "@/components/matrix-rain";
 import { BootTerminal } from "@/components/boot-terminal";
 import { LiveStat } from "@/components/live-stat";
 import { CountdownClock } from "@/components/countdown";
+import { useCtfStore } from "@/lib/ctf-store";
+import { getActiveEdition } from "@/lib/submission-themes";
 import type { EventSummary } from "@/lib/types";
 
 export function Hero({
@@ -26,6 +28,9 @@ export function Hero({
   totalEvents: number;
   activeEvents: number;
 }) {
+  const activeEditionId = useCtfStore((s) => s.activeEdition);
+  const edition = getActiveEdition(activeEditionId);
+
   return (
     <section
       id="top"
@@ -56,7 +61,7 @@ export function Hero({
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--neon)] opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--neon)]" />
             </span>
-            Live · Render72 Events API · Open CORS
+            <span>{edition.badgeLabel} · 30 Campus Ops</span>
           </motion.div>
 
           <motion.h1
@@ -65,17 +70,17 @@ export function Hero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.05 }}
             className="mt-5 font-mono text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
-            aria-label="FlagHorizon, Campus Capture the Flag"
+            aria-label={`${edition.name}, ${edition.tagline}`}
           >
             <span
               className="glitch-text neon-text"
-              data-text="FlagHorizon"
+              data-text={edition.name}
               aria-hidden="true"
             >
-              FlagHorizon
+              {edition.name}
             </span>
-            <span className="block text-foreground/80">
-              Campus Capture the Flag
+            <span className="block text-foreground/80 text-2xl sm:text-3xl lg:text-4xl mt-2 font-medium tracking-normal">
+              {edition.tagline}
             </span>
           </motion.h1>
 
@@ -85,10 +90,7 @@ export function Hero({
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
             className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
-            A jeopardy-style security arena where student teams trace clues across web security,
-            forensics, cryptography and reverse engineering in an isolated sandbox. This is the
-            command center — live telemetry, defense map, dynamic scoring, and the full Render72
-            events board in one terminal-grade experience.
+            {edition.heroSubheadline}
           </motion.p>
 
           <motion.div

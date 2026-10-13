@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useCtfStore } from "@/lib/ctf-store";
 
-const LINES = [
+const CTF_LINES = [
   "$ initializing flaghorizon-sandbox v3.1.0…",
   "→ mounting /dev/ctfboard                [OK]",
   "→ handshake render72.api/events         [200 OK]",
@@ -14,12 +15,21 @@ const LINES = [
   "» FlagHorizon ready. welcome, operator.",
 ];
 
-/**
- * Terminal boot sequence with a typewriter effect. Used inside the hero.
- * - Accessible: respects prefers-reduced-motion (skips typing, shows all lines)
- * - Visible: viewport-aware, starts when scrolled into view
- */
+const CAMPUSPULSE_LINES = [
+  "$ initializing campuspulse-360 spatial day-planner v2.0.0…",
+  "→ loading 30-event campus spatial grid    [OK]",
+  "→ synchronizing repair café workbench     [READY]",
+  "→ calibrating 35mm photo walk morning light [OK]",
+  "→ rendering 1.5m² rangoli sacred geometry [OK]",
+  "→ booting UX teardown heatmap lab         [OK]",
+  "→ launching live life-drawing metronome    [OK]",
+  "→ spinning pottery wheel ceramic atelier  [OK]",
+  "» CampusPulse 360 online. welcome, attendee.",
+];
+
 export function BootTerminal() {
+  const activeEdition = useCtfStore((s) => s.activeEdition);
+  const LINES = activeEdition === "2" ? CAMPUSPULSE_LINES : CTF_LINES;
   const [printed, setPrinted] = useState<string[]>([]);
   const [typing, setTyping] = useState("");
   const ref = useRef<HTMLDivElement | null>(null);
@@ -71,7 +81,7 @@ export function BootTerminal() {
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [LINES]);
 
   return (
     <div

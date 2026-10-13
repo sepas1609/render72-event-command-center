@@ -1,132 +1,211 @@
 "use client";
 
 import { useState } from "react";
-import { Palette } from "lucide-react";
+import { Palette, Sparkles, CheckCircle2, Users, Heart } from "lucide-react";
+import confetti from "canvas-confetti";
 import { useAudioCue } from "@/hooks/use-audio-cue";
 
-const COLOR_PALETTE = [
-  { name: "Turquoise River", hex: "#06b6d4" },
-  { name: "Earthen Ochre", hex: "#f59e0b" },
-  { name: "Deep Sindoor", hex: "#ef4444" },
-  { name: "Forest Moss", hex: "#10b981" },
-  { name: "Lotus Rose", hex: "#ec4899" },
-  { name: "Base White Powder", hex: "#f8fafc" },
+const ORGANIC_PIGMENTS = [
+  { name: "Marigold Saffron", hex: "#f97316", naturalSource: "Dry calendula petals" },
+  { name: "Turmeric Gold", hex: "#eab308", naturalSource: "Stone-ground haldi" },
+  { name: "Vermilion Sindoor", hex: "#dc2626", naturalSource: "Natural cinnabar powder" },
+  { name: "Rice Flour White", hex: "#f8fafc", naturalSource: "Washed rice starch" },
+  { name: "Forest Henna Green", hex: "#16a34a", naturalSource: "Dry mehendi leaf flour" },
+  { name: "Indigo Petal Blue", hex: "#3b82f6", naturalSource: "Fermented neel extract" },
+];
+
+const SYMMETRY_MODES = [
+  { id: "8-fold", name: "8-Fold Sacred Mandala", vibe: "Traditional courtyard radial harmony" },
+  { id: "12-fold", name: "12-Fold Solar Bloom", vibe: "High-density floral kaleidoscope" },
+  { id: "freeform", name: "Riparian Flow (Organic Rivers)", vibe: "Contemporary asymmetric water curves" },
 ];
 
 export function ChowkRangoliDesignerWidget() {
-  const [activeThemeConcept, setActiveThemeConcept] = useState("Riparian Memory: Flowing Sacred Riverbeds");
-  const [selectedColors, setSelectedColors] = useState<string[]>(["#06b6d4", "#f59e0b", "#10b981"]);
-  const [naturalAdditions, setNaturalAdditions] = useState({
-    marigoldPetals: true,
-    riceGrains: true,
-    mangoLeaves: false,
-  });
+  const [selectedPigment, setSelectedPigment] = useState(ORGANIC_PIGMENTS[0]);
+  const [symmetryMode, setSymmetryMode] = useState("8-fold");
+  const [duoHarmonized, setDuoHarmonized] = useState(false);
   const play = useAudioCue();
 
+  const handleHarmonize = () => {
+    setDuoHarmonized(true);
+    play("capture");
+    confetti({
+      particleCount: 60,
+      spread: 70,
+      origin: { y: 0.65 },
+      colors: ["#f97316", "#eab308", "#dc2626", "#ec4899"],
+    });
+  };
+
   return (
-    <div className="rounded-2xl border-2 border-rose-500/30 bg-[#070b16] p-6 shadow-[0_0_35px_rgba(244,63,94,0.12)] backdrop-blur-xl">
+    <div className="rounded-2xl border-2 border-rose-500/30 bg-[#070b16] p-6 shadow-[0_0_35px_rgba(244,63,94,0.15)] backdrop-blur-xl">
+      {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-500/20 text-rose-400">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 shadow-[0_0_15px_rgba(244,63,94,0.25)]">
             <Palette className="h-5 w-5" />
           </div>
           <div>
             <div className="font-mono text-sm font-bold uppercase tracking-wider text-foreground flex items-center gap-2">
-              <span>Chowk & Colour 1.5m² Rangoli Duet Studio</span>
-              <span className="rounded-full bg-rose-500/20 px-2 py-0.5 text-[0.65rem] text-rose-300">
-                FOLK ARTS ATELIER
+              <span>Chowk &amp; Colour: 1.5m² Duo Rangoli Atelier</span>
+              <span className="rounded-full bg-rose-500/20 border border-rose-500/30 px-2 py-0.5 text-[0.62rem] text-rose-300">
+                FOLK ARTS DUET
               </span>
             </div>
             <p className="text-xs text-muted-foreground">
-              Boundary constraint checker (1.5 m × 1.5 m) and biodegradable natural materials calculator.
+              Two artists, one black-stone tile square. Synthesize natural pigments and sacred radial geometries.
             </p>
           </div>
         </div>
 
-        <div className="font-mono text-xs text-muted-foreground">
-          Boundary: <span className="text-foreground font-bold">1.5m × 1.5m</span> · Fee: <span className="text-rose-400 font-bold">₹200/duo</span>
+        <div className="font-mono text-xs text-rose-300 flex items-center gap-1.5">
+          <Users className="h-3.5 w-3.5" />
+          <span>2-Artist Teams · ₹200 / duo</span>
         </div>
       </div>
 
-      {/* Theme Concept */}
-      <div className="mt-4 font-mono text-xs">
-        <label className="text-muted-foreground uppercase text-[0.68rem]">
-          Theme Statement (Theme: &ldquo;Water, Memory, Tomorrow&rdquo; - 35% Weight):
-        </label>
-        <input
-          type="text"
-          value={activeThemeConcept}
-          onChange={(e) => setActiveThemeConcept(e.target.value)}
-          className="mt-1 w-full rounded-xl border border-white/15 bg-black/60 px-3 py-2 text-foreground font-semibold focus:border-rose-400 focus:outline-none"
-        />
+      {/* Pigment Selection Palette */}
+      <div className="mt-4">
+        <div className="text-[0.68rem] font-mono uppercase tracking-wider text-muted-foreground mb-2">
+          Natural &amp; Biodegradable Pigment Tray:
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {ORGANIC_PIGMENTS.map((pig) => (
+            <button
+              key={pig.name}
+              type="button"
+              onClick={() => {
+                setSelectedPigment(pig);
+                play("click");
+              }}
+              className={`rounded-xl border px-3 py-1.5 font-mono text-xs transition-all flex items-center gap-2 ${
+                selectedPigment.name === pig.name
+                  ? "border-rose-400 bg-rose-500/20 text-rose-200 shadow-[0_0_12px_rgba(244,63,94,0.3)]"
+                  : "border-white/10 bg-black/40 text-muted-foreground hover:bg-white/5"
+              }`}
+            >
+              <span
+                className="h-3.5 w-3.5 rounded-full border border-white/20 shadow-sm"
+                style={{ backgroundColor: pig.hex }}
+              />
+              <span>{pig.name}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Palette & Natural Additions */}
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 font-mono text-xs">
-        <div className="rounded-xl border border-white/10 bg-black/50 p-4">
-          <div className="text-muted-foreground uppercase text-[0.68rem] pb-2 border-b border-white/10">
-            Standard Six-Color Dry Palette:
+      {/* Mesmerizing Sacred Geometry Canvas */}
+      <div className="mt-4 rounded-xl border border-white/15 bg-black/80 p-5 font-mono text-xs relative overflow-hidden">
+        <div className="flex items-center justify-between border-b border-white/10 pb-3 text-[0.7rem] text-muted-foreground">
+          <span>Boundary: 150 cm × 150 cm Polished Basalt Tile</span>
+          <span>Theme: &ldquo;Water, Memory, Tomorrow&rdquo; (35% Weight)</span>
+        </div>
+
+        {/* Dynamic Visual Mandala Display */}
+        <div className="mt-4 flex flex-col md:flex-row items-center justify-around gap-6 py-4">
+          <div className="relative h-44 w-44 rounded-full border-2 border-dashed border-rose-500/40 flex items-center justify-center p-3 animate-[spin_60s_linear_infinite]">
+            <div
+              className="absolute inset-2 rounded-full opacity-30 blur-sm transition-all duration-500"
+              style={{ backgroundColor: selectedPigment.hex }}
+            />
+            {/* Geometric Ring */}
+            <div className="relative h-32 w-32 rounded-full border border-white/30 flex items-center justify-center">
+              <div className="h-20 w-20 rounded-full border-2 border-amber-400/50 flex items-center justify-center">
+                <div
+                  className="h-10 w-10 rounded-full shadow-lg transition-transform duration-300"
+                  style={{ backgroundColor: selectedPigment.hex }}
+                />
+              </div>
+            </div>
+
+            {/* Petal Orbiters */}
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
+              <span
+                key={deg}
+                className="absolute h-2.5 w-2.5 rounded-full shadow-md"
+                style={{
+                  backgroundColor: selectedPigment.hex,
+                  transform: `rotate(${deg}deg) translate(80px)`,
+                }}
+              />
+            ))}
           </div>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {COLOR_PALETTE.map((c) => {
-              const active = selectedColors.includes(c.hex);
-              return (
-                <button
-                  key={c.name}
-                  type="button"
-                  onClick={() => {
-                    if (active) setSelectedColors(selectedColors.filter((x) => x !== c.hex));
-                    else setSelectedColors([...selectedColors, c.hex]);
-                    play("click");
-                  }}
-                  className={`flex items-center gap-2 rounded-lg border px-2.5 py-1.5 transition-all ${
-                    active ? "border-rose-400 bg-white/10 font-bold text-foreground" : "border-white/10 text-muted-foreground"
-                  }`}
-                >
-                  <span className="h-3 w-3 rounded-full inline-block" style={{ backgroundColor: c.hex }} />
-                  <span>{c.name}</span>
-                </button>
-              );
-            })}
+
+          {/* Duo Artist Synchronization Metrics */}
+          <div className="space-y-3 w-full md:w-64 font-sans text-xs">
+            <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+              <div className="flex items-center justify-between text-muted-foreground font-mono text-[0.68rem] uppercase mb-1">
+                <span>Artist 1: Geometric Grid</span>
+                <span className="text-emerald-400 font-bold">In Rhythm</span>
+              </div>
+              <p className="text-foreground/80 text-[0.72rem]">
+                Drawing structural compass chalk arcs &amp; radial axes.
+              </p>
+            </div>
+
+            <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+              <div className="flex items-center justify-between text-muted-foreground font-mono text-[0.68rem] uppercase mb-1">
+                <span>Artist 2: Floral Shade Duet</span>
+                <span className="text-rose-400 font-bold">Synchronized</span>
+              </div>
+              <p className="text-foreground/80 text-[0.72rem]">
+                Pinching natural {selectedPigment.naturalSource} gradient fills.
+              </p>
+            </div>
+
+            <div className="text-[0.7rem] text-rose-300 font-mono flex items-center gap-1.5">
+              <Heart className="h-3.5 w-3.5 fill-rose-500 text-rose-500" />
+              <span>Duo Walkway Harmony Index: 98% (Flawless Flow)</span>
+            </div>
           </div>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-black/50 p-4">
-          <div className="text-muted-foreground uppercase text-[0.68rem] pb-2 border-b border-white/10">
-            Pre-Approved Biodegradable Additions (10% Material Responsibility):
+        {/* Symmetry Selector */}
+        <div className="mt-3 pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[0.7rem]">
+          <div className="flex items-center gap-2">
+            <span className="text-muted-foreground">Pattern Layout:</span>
+            {SYMMETRY_MODES.map((sm) => (
+              <button
+                key={sm.id}
+                type="button"
+                onClick={() => {
+                  setSymmetryMode(sm.id);
+                  play("tick");
+                }}
+                className={`rounded px-2 py-0.5 font-mono ${
+                  symmetryMode === sm.id
+                    ? "bg-rose-500/20 text-rose-300 font-bold border border-rose-500/40"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {sm.name}
+              </button>
+            ))}
           </div>
-          <div className="mt-3 space-y-2">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={naturalAdditions.marigoldPetals}
-                onChange={(e) => setNaturalAdditions({ ...naturalAdditions, marigoldPetals: e.target.checked })}
-                className="accent-rose-400"
-              />
-              <span className="text-foreground">Fresh Marigold Petals (Genda Phool)</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={naturalAdditions.riceGrains}
-                onChange={(e) => setNaturalAdditions({ ...naturalAdditions, riceGrains: e.target.checked })}
-                className="accent-rose-400"
-              />
-              <span className="text-foreground">Dyed Raw Rice Grains (Akshata)</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={naturalAdditions.mangoLeaves}
-                onChange={(e) => setNaturalAdditions({ ...naturalAdditions, mangoLeaves: e.target.checked })}
-                className="accent-rose-400"
-              />
-              <span className="text-foreground">Mango & Ashoka Green Leaves</span>
-            </label>
-          </div>
-          <div className="mt-3 text-[0.68rem] text-red-400 font-semibold">
-            [!] Strictly Prohibited: Chemical spray fixatives, plastic glitter, and adhesive bases.
-          </div>
+
+          <span className="text-muted-foreground">Biodegradable rule: Zero synthetic acrylics</span>
+        </div>
+      </div>
+
+      {/* Action Bar */}
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={handleHarmonize}
+          className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 px-5 py-2.5 font-mono text-xs font-bold text-white transition-all hover:brightness-110 active:scale-95 shadow-[0_0_20px_rgba(244,63,94,0.3)]"
+        >
+          <Sparkles className="h-4 w-4" />
+          <span>{duoHarmonized ? "Mandala Pattern Harmonized ✓" : "Simulate Duo Rangoli Placement"}</span>
+        </button>
+
+        <div className="font-mono text-xs text-muted-foreground flex items-center gap-2">
+          {duoHarmonized ? (
+            <span className="inline-flex items-center gap-1.5 text-emerald-400 font-bold">
+              <CheckCircle2 className="h-3.5 w-3.5" /> Walkway Square #07 Assigned to Your Duo!
+            </span>
+          ) : (
+            <span>25 Duet Squares Max · Friday 10:00 AM</span>
+          )}
         </div>
       </div>
     </div>
