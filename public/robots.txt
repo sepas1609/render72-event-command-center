@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://render72-flaghorizon.onrender.com/sitemap.xml
