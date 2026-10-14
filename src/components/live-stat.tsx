@@ -54,7 +54,7 @@ export function LiveStat({
     >
       <div className="flex items-center gap-1.5">
         <span aria-hidden>{icon}</span>
-        <span className="font-mono text-[0.65rem] uppercase tracking-widest opacity-80">
+        <span className="font-mono text-[0.65rem] uppercase tracking-widest text-slate-300 font-semibold">
           {label}
         </span>
       </div>

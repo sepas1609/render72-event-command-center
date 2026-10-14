@@ -57,14 +57,15 @@ export function CountdownClock({
           <Clock className="h-3.5 w-3.5" aria-hidden />
           {label ?? "Mission unlocks in"}
         </div>
-        <span className="font-mono text-[0.65rem] text-muted-foreground">IST · +05:30</span>
+        <span className="font-mono text-[0.65rem] text-slate-300">IST · +05:30</span>
       </div>
       {parts.isPast ? (
         <div className="font-mono text-sm text-[var(--neon-amber)]">
-          ⚠ Mission window is live or has concluded.
+          ⚠ Window is live or has concluded.
         </div>
       ) : (
         <div
+          suppressHydrationWarning
           className="grid grid-cols-4 gap-2"
           role="timer"
           aria-label={`${parts.days} days, ${parts.hours} hours, ${parts.minutes} minutes, ${parts.seconds} seconds remaining`}
@@ -74,10 +75,13 @@ export function CountdownClock({
               key={lbl}
               className="flex flex-col items-center justify-center rounded-md border border-white/5 bg-black/40 px-2 py-2"
             >
-              <span className="font-mono text-xl font-bold tabular-nums text-foreground">
+              <span
+                suppressHydrationWarning
+                className="font-mono text-xl font-bold tabular-nums text-foreground"
+              >
                 {String(val).padStart(2, "0")}
               </span>
-              <span className="font-mono text-[0.6rem] uppercase tracking-widest text-muted-foreground">
+              <span className="font-mono text-[0.6rem] uppercase tracking-widest text-slate-300 font-semibold">
                 {lbl}
               </span>
             </div>
@@ -87,7 +91,7 @@ export function CountdownClock({
       {ctaText && ctaHref && (
         <a
           href={ctaHref}
-          className="group inline-flex items-center gap-1.5 self-start font-mono text-xs text-[var(--neon)] hover:underline"
+          className="group inline-flex items-center gap-1.5 self-start font-mono text-xs text-[var(--neon)] hover:underline min-h-[32px] py-1"
         >
           {ctaText}
           <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" aria-hidden />

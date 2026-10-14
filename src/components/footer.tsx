@@ -1,8 +1,13 @@
 "use client";
 
 import { Github, Heart, Radio, ShieldHalf, Twitter } from "lucide-react";
+import { useCtfStore } from "@/lib/ctf-store";
+import { getActiveEdition } from "@/lib/submission-themes";
 
 export function Footer() {
+  const activeEdition = useCtfStore((s) => s.activeEdition);
+  const edition = getActiveEdition(activeEdition);
+
   return (
     <footer className="relative mt-auto border-t border-white/5 bg-black/40">
       <div className="terminal-grid-bg absolute inset-0 -z-10 opacity-20" aria-hidden />
@@ -15,17 +20,15 @@ export function Footer() {
               </span>
               <div className="leading-tight">
                 <p className="font-mono text-sm font-semibold text-foreground">
-                  FlagHorizon
+                  {edition.name}
                 </p>
-                <p className="font-mono text-[0.65rem] uppercase tracking-widest text-muted-foreground">
-                  CTF Command Center
+                <p className="font-mono text-[0.65rem] uppercase tracking-widest text-slate-300">
+                  {edition.tagline}
                 </p>
               </div>
             </div>
-            <p className="mt-3 max-w-md text-sm text-muted-foreground">
-              A jeopardy-style campus Capture the Flag command center — built on the public
-              Render72 Events API. Live telemetry, defense map, dynamic scoring simulation, and the
-              full events board, all in one terminal-grade experience.
+            <p className="mt-3 max-w-md text-sm text-slate-300">
+              {edition.heroSubheadline} Built on the public Render72 Events API with multi-track itinerary planning, interactive ateliers, and 100% zero-crash resilience.
             </p>
             <div className="mt-4 flex items-center gap-2">
               <a

@@ -73,7 +73,7 @@ export function MissionCard({
           onOpen?.();
         }}
         className="relative block aspect-[3/2] w-full overflow-hidden"
-        aria-label={`Open mission briefing for ${event.name}`}
+        aria-label={`${event.name} — Open details`}
       >
         <Image
           src={event.cover_image_url}
@@ -86,8 +86,8 @@ export function MissionCard({
           // when above-the-fold, fetch at high priority
           fetchPriority={priority ? "high" : "auto"}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-        <div className="absolute left-3 top-3 flex flex-wrap items-center gap-1.5">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" aria-hidden="true" />
+        <div className="absolute left-3 top-3 flex flex-wrap items-center gap-1.5" aria-hidden="true">
           <span
             className={cn(
               "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest backdrop-blur",
@@ -110,7 +110,7 @@ export function MissionCard({
             </span>
           )}
         </div>
-        <div className="absolute right-3 top-3">
+        <div className="absolute right-3 top-3" aria-hidden="true">
           <span
             className={cn(
               "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest backdrop-blur",
@@ -128,7 +128,7 @@ export function MissionCard({
           </span>
         </div>
         <div className="absolute inset-x-3 bottom-3">
-          <p className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--neon)]">
+          <p className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--neon)]" aria-hidden="true">
             {event.category}
           </p>
           <h3 className="mt-0.5 line-clamp-2 font-mono text-base font-semibold leading-snug text-foreground">
@@ -246,18 +246,25 @@ export function MissionCard({
                 openBriefing(event.id);
                 onOpen?.();
               }}
-              className="inline-flex items-center gap-1 rounded-md bg-white/10 px-2.5 py-1.5 font-mono text-[0.68rem] text-foreground transition-colors hover:bg-white/20"
+              aria-label={`Preview ${event.name}`}
+              className="inline-flex items-center gap-1 rounded-md bg-white/10 px-2.5 py-1.5 font-mono text-[0.68rem] text-foreground transition-colors hover:bg-white/20 min-h-[32px]"
               title="Quick modal preview"
             >
               preview
             </button>
             <Link
               href={`/events/${event.id}`}
-              className={cn(
-                "inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 font-mono text-[0.68rem] font-bold transition-all hover:brightness-110",
+              prefetch={false}
+              aria-label={
                 isHeroInActiveEdition
-                  ? "bg-gradient-to-r from-[var(--neon)] to-[var(--neon-cyan)] text-[var(--primary-foreground)] shadow-[0_0_15px_oklch(0.86_0.24_152/25%)]"
-                  : "bg-[var(--neon)] text-[var(--primary-foreground)]"
+                  ? `Launch console for ${event.name}`
+                  : `Dossier for ${event.name}`
+              }
+              className={cn(
+                "inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 font-mono text-[0.68rem] font-bold transition-all hover:brightness-110 min-h-[32px] text-black",
+                isHeroInActiveEdition
+                  ? "bg-gradient-to-r from-[var(--neon)] to-[var(--neon-cyan)] shadow-[0_0_15px_oklch(0.86_0.24_152/25%)]"
+                  : "bg-[var(--neon)]"
               )}
               title="Open full dedicated event dossier"
             >

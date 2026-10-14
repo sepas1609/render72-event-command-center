@@ -14,6 +14,7 @@ import {
   LayoutGrid,
 } from "lucide-react";
 import { useCtfStore } from "@/lib/ctf-store";
+import { getActiveEdition } from "@/lib/submission-themes";
 import { useAudioCue } from "@/hooks/use-audio-cue";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,7 @@ export function Nav() {
   const audioEnabled = useCtfStore((s) => s.audioEnabled);
   const toggleAudio = useCtfStore((s) => s.toggleAudio);
   const activeEdition = useCtfStore((s) => s.activeEdition);
+  const edition = getActiveEdition(activeEdition);
   const setActiveEdition = useCtfStore((s) => s.setActiveEdition);
   const play = useAudioCue();
 
@@ -65,17 +67,25 @@ export function Nav() {
           <Link
             href="/"
             className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--neon)] rounded-lg min-h-[44px]"
-            aria-label="FlagHorizon OS — Cyber Arena & Events Deck"
+            aria-label={`${edition.name} — ${edition.tagline}`}
           >
             <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--neon)]/20 via-[var(--neon-cyan)]/15 to-transparent text-[var(--neon)] border border-[var(--neon)]/40 shadow-[0_0_15px_oklch(0.86_0.24_152/20%)] transition-transform group-hover:scale-105">
               <ShieldCheck className="h-5 w-5" aria-hidden="true" />
             </div>
             <div className="flex flex-col leading-tight">
               <span className="font-mono text-base font-bold tracking-tight text-foreground group-hover:text-[var(--neon)] transition-colors">
-                FlagHorizon<span className="text-[var(--neon-cyan)] font-sans ml-1 text-xs px-1.5 py-0.2 rounded bg-[var(--neon-cyan)]/10 border border-[var(--neon-cyan)]/30 font-bold">OS</span>
+                {edition.id === "campuspulse" ? (
+                  <>
+                    CampusPulse<span className="text-[var(--neon-cyan)] font-sans ml-1 text-xs px-1.5 py-0.2 rounded bg-[var(--neon-cyan)]/10 border border-[var(--neon-cyan)]/30 font-bold">360</span>
+                  </>
+                ) : (
+                  <>
+                    {edition.name.split(" ")[0]}<span className="text-[var(--neon-cyan)] font-sans ml-1 text-xs px-1.5 py-0.2 rounded bg-[var(--neon-cyan)]/10 border border-[var(--neon-cyan)]/30 font-bold">{edition.name.split(" ")[1] || "OS"}</span>
+                  </>
+                )}
               </span>
               <span className="font-mono text-[0.65rem] uppercase tracking-widest text-slate-300">
-                Cyber Arena & Events Deck
+                {edition.tagline}
               </span>
             </div>
           </Link>
@@ -88,6 +98,7 @@ export function Nav() {
                 <Link
                   key={link.label}
                   href={link.href}
+                  prefetch={false}
                   className={cn(
                     "rounded-lg px-3 py-2 font-mono text-xs uppercase tracking-wider transition-all min-h-[40px] inline-flex items-center",
                     isActive
@@ -192,6 +203,7 @@ export function Nav() {
                 <Link
                   key={link.label}
                   href={link.href}
+                  prefetch={false}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
                     "flex items-center justify-between rounded-lg px-4 py-2.5 font-mono text-sm uppercase tracking-wider transition-colors",
@@ -206,6 +218,7 @@ export function Nav() {
               <div className="pt-2 border-t border-white/10 flex gap-2">
                 <Link
                   href="/events"
+                  prefetch={false}
                   onClick={() => setMobileOpen(false)}
                   className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-[var(--neon)] py-2.5 font-mono text-xs font-semibold text-[var(--primary-foreground)]"
                 >

@@ -239,7 +239,7 @@ export function MissionGrid({
               className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
             >
               <AnimatePresence mode="popLayout">
-                {filtered.map((ev, idx) => (
+                {filtered.map((ev) => (
                   <motion.div
                     key={ev.id}
                     layout
@@ -248,7 +248,7 @@ export function MissionGrid({
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <MissionCard event={ev} priority={idx < 6} onOpen={() => play("open")} />
+                    <MissionCard event={ev} priority={false} onOpen={() => play("open")} />
                   </motion.div>
                 ))}
               </AnimatePresence>

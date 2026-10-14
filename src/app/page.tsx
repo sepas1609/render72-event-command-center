@@ -3,9 +3,9 @@ import { getEvents } from "@/lib/api";
 import { HomeClient } from "./home-client";
 
 export const metadata: Metadata = {
-  title: "FlagHorizon — Campus Capture the Flag Command Center",
+  title: "CampusPulse 360 — Spatial Campus Day-Planner & Festival Hub",
   description:
-    "FlagHorizon is a jeopardy-style campus Capture the Flag command center with live telemetry, an interactive defense map, dynamic scoring, and the full Render72 events board.",
+    "CampusPulse 360 is an immersive spatial campus day-planner with interactive venue heatmaps, conflict-free multi-track scheduling, and 6 bespoke creative arts ateliers across 30 campus events.",
 };
 
 export default async function Home() {

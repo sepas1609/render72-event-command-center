@@ -55,6 +55,7 @@ export function LiveTicker({ events }: { events: EventSummary[] }) {
               <Link
                 key={`${it.id}-${idx}`}
                 href={`/events/${it.id}`}
+                prefetch={false}
                 className="inline-flex items-center gap-2 font-mono text-[0.72rem] text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Target className="h-3 w-3 text-[var(--neon-cyan)]" aria-hidden="true" />

@@ -43,7 +43,7 @@ interface CtfState {
 export const useCtfStore = create<CtfState>()(
   persist(
     (set) => ({
-      activeEdition: "1",
+      activeEdition: "2",
       setActiveEdition: (ed) => set({ activeEdition: ed }),
       view: "grid",
       sort: "date",

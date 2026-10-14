@@ -9,12 +9,14 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
 });
 
 const SITE_URL = "https://render72-command-center.vercel.app";
@@ -22,30 +24,31 @@ const SITE_URL = "https://render72-command-center.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "FlagHorizon — Campus Capture the Flag Command Center",
-    template: "%s · FlagHorizon Sentinel",
+    default: "CampusPulse 360 — Spatial Campus Day-Planner & Festival Hub",
+    template: "%s · CampusPulse 360",
   },
   description:
-    "FlagHorizon is a jeopardy-style campus Capture the Flag command center with live telemetry, an interactive defense map, dynamic scoring, and the full Render72 events board — engineered for security-curious students.",
-  applicationName: "FlagHorizon Sentinel",
+    "CampusPulse 360 is an immersive spatial campus day-planner with interactive venue heatmaps, conflict-free multi-track scheduling, and 6 bespoke creative arts ateliers across 30 campus events.",
+  applicationName: "CampusPulse 360",
   generator: "Next.js",
   keywords: [
-    "FlagHorizon",
-    "Capture the Flag",
-    "CTF",
-    "Cybersecurity",
-    "Web Security",
-    "Digital Forensics",
-    "Cryptography",
-    "Reverse Engineering",
-    "Campus Hackathon",
+    "CampusPulse 360",
+    "Campus Festival",
+    "Day-Planner",
+    "Spatial Planner",
+    "Campus Events",
     "Render72",
-    "Jeopardy CTF",
+    "Repair Café",
+    "Photo Walk",
+    "Rangoli Duet",
+    "UX Lab",
+    "Live Art",
+    "Pottery Studio",
   ],
-  authors: [{ name: "FlagHorizon Sentinel Team" }],
-  creator: "FlagHorizon Sentinel Team",
-  publisher: "FlagHorizon Sentinel Team",
-  category: "cybersecurity",
+  authors: [{ name: "CampusPulse 360 Team" }],
+  creator: "CampusPulse 360 Team",
+  publisher: "CampusPulse 360 Team",
+  category: "campus-festival",
   alternates: {
     canonical: "/",
   },
@@ -55,11 +58,11 @@ export const metadata: Metadata = {
     email: false,
   },
   openGraph: {
-    title: "FlagHorizon — Campus Capture the Flag Command Center",
+    title: "CampusPulse 360 — Spatial Campus Day-Planner & Festival Hub",
     description:
-      "Live CTF command center with telemetry, defense map, dynamic scoring, and the full Render72 campus events board. A cybersecurity arena for student teams.",
+      "Interactive multi-track spatial day planner with conflict-free scheduling and 6 bespoke creative ateliers for 30 campus events.",
     url: SITE_URL,
-    siteName: "FlagHorizon",
+    siteName: "CampusPulse 360",
     type: "website",
     locale: "en_US",
     images: [
@@ -67,15 +70,15 @@ export const metadata: Metadata = {
         url: "https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop",
         width: 1200,
         height: 630,
-        alt: "Hands typing code on a laptop at FlagHorizon CTF",
+        alt: "CampusPulse 360 Spatial Festival Experience",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FlagHorizon — Campus Capture the Flag Command Center",
+    title: "CampusPulse 360 — Spatial Campus Day-Planner & Festival Hub",
     description:
-      "Live CTF command center with telemetry, defense map, and dynamic scoring for student teams.",
+      "Multi-track festival planner and interactive creative ateliers across 30 campus events.",
     images: [
       "https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop",
     ],
@@ -115,37 +118,41 @@ export const viewport: Viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Event",
-  name: "FlagHorizon: Campus Capture the Flag",
+  name: "Second Life: Campus Repair Café",
   description:
-    "Jeopardy-style capture-the-flag contest across web security, forensics, cryptography and reverse engineering in an isolated sandbox.",
+    "Hands-on diagnosis, precision soldering, garment mending, and cycle tuning with live component telemetry, diagnostic workbenches, and zero-waste repair certifications.",
   eventStatus: "https://schema.org/EventScheduled",
-  eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
-  startDate: "2026-11-15T10:00:00+05:30",
-  endDate: "2026-11-15T17:30:00+05:30",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  startDate: "2026-11-14T10:00:00+05:30",
+  endDate: "2026-11-14T17:00:00+05:30",
   url: SITE_URL,
   image:
-    "https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop",
+    "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop",
   organizer: {
     "@type": "Organization",
-    name: "Cyber Defence Guild",
+    name: "Sustainability & Maker Guild",
     url: "https://render72.pages.dev",
   },
   offers: {
     "@type": "Offer",
-    name: "Team registration",
-    price: "300",
+    name: "General Attendee Pass",
+    price: "0",
     priceCurrency: "INR",
     availability: "https://schema.org/InStock",
-    url: "https://render72.pages.dev/api/test/events/a6de479e-c82e-567a-a7a8-61207e455385",
+    url: "https://render72.pages.dev/api/test/events/f4a7eca2-0363-5f01-96d8-40b80e7d3798",
     validFrom: "2026-10-13T00:00:00+05:30",
   },
   location: {
-    "@type": "VirtualLocation",
-    name: "FlagHorizon Virtual Security Arena",
-    url: SITE_URL,
+    "@type": "Place",
+    name: "Maker Space Courtyard & Engineering Lab 4",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Campus Grounds",
+      addressCountry: "IN",
+    },
   },
   keywords:
-    "CTF, Capture the Flag, Cybersecurity, Web Security, Forensics, Cryptography, Reverse Engineering",
+    "CampusPulse 360, Repair Cafe, Sustainability, Electronics Repair, Soldering, Maker Workshop, Campus Festival",
 };
 
 export default function RootLayout({

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Activity,
   ArrowDown,
@@ -51,10 +50,7 @@ export function Hero({
 
       <div className="mx-auto grid max-w-7xl gap-8 px-4 pb-12 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:pb-20">
         <div className="lg:col-span-7">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+          <div
             className="inline-flex items-center gap-2 rounded-full border border-[var(--neon)]/40 bg-[var(--neon)]/10 px-3 py-1 font-mono text-[0.7rem] uppercase tracking-widest text-[var(--neon)]"
           >
             <span className="relative flex h-2 w-2">
@@ -62,13 +58,10 @@ export function Hero({
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--neon)]" />
             </span>
             <span>{edition.badgeLabel} · 30 Campus Ops</span>
-          </motion.div>
+          </div>
 
-          <motion.h1
+          <h1
             id="hero-title"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: "easeOut", delay: 0.05 }}
             className="mt-5 font-mono text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
             aria-label={`${edition.name}, ${edition.tagline}`}
           >
@@ -79,24 +72,18 @@ export function Hero({
             >
               {edition.name}
             </span>
-            <span className="block text-foreground/80 text-2xl sm:text-3xl lg:text-4xl mt-2 font-medium tracking-normal">
+            <span className="block text-foreground/90 text-2xl sm:text-3xl lg:text-4xl mt-2 font-medium tracking-normal">
               {edition.tagline}
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
-            className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+          <p
+            className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg"
           >
             {edition.heroSubheadline}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: "easeOut", delay: 0.15 }}
+          <div
             className="mt-7 flex flex-wrap items-center gap-3"
           >
             <a
@@ -113,14 +100,9 @@ export function Hero({
               <Target className="h-4 w-4" aria-hidden />
               Browse {totalEvents} Ops
             </a>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: "easeOut", delay: 0.2 }}
-            className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4"
-          >
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
             <LiveStat
               icon={<Cpu className="h-4 w-4" aria-hidden />}
               label="Live Ops"
@@ -151,41 +133,26 @@ export function Hero({
               value="Isolated"
               accent="violet"
             />
-          </motion.div>
+          </div>
 
           {primaryEvent && (
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease: "easeOut", delay: 0.25 }}
-              className="mt-6"
-            >
+            <div className="mt-6">
               <CountdownClock
                 target={primaryEvent.schedule_summary.start_date + "T" + primaryEvent.schedule_summary.start_time + ":00+05:30"}
                 label="Mission unlocks in"
                 ctaText="View mission briefing"
                 ctaHref="#missions"
               />
-            </motion.div>
+            </div>
           )}
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="mt-8 flex items-center gap-2 font-mono text-xs text-muted-foreground"
-          >
+          <div className="mt-8 flex items-center gap-2 font-mono text-xs text-muted-foreground">
             <ArrowDown className="h-3.5 w-3.5 animate-bounce" aria-hidden />
             <span>scroll to deploy the operator console</span>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
-          className="lg:col-span-5"
-        >
+        <div className="lg:col-span-5">
           <div className="relative">
             <div className="absolute -inset-2 -z-10 rounded-2xl bg-gradient-to-br from-[var(--neon)]/20 via-transparent to-[var(--neon-cyan)]/20 blur-2xl" aria-hidden />
             <BootTerminal />
@@ -200,7 +167,7 @@ export function Hero({
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -85,7 +85,12 @@ export function MatrixRain({
         drops[i] += 0.6 + Math.random() * 0.6;
       }
     };
-    raf = requestAnimationFrame(draw);
+
+    let started = false;
+    const startTimer = setTimeout(() => {
+      started = true;
+      raf = requestAnimationFrame(draw);
+    }, 1200);
 
     let isVisible = true;
     const io = new IntersectionObserver((entries) => {
@@ -93,7 +98,7 @@ export function MatrixRain({
         isVisible = e.isIntersecting;
         if (!isVisible) {
           cancelAnimationFrame(raf);
-        } else {
+        } else if (started) {
           last = 0;
           raf = requestAnimationFrame(draw);
         }
@@ -104,7 +109,7 @@ export function MatrixRain({
     const onVisibility = () => {
       if (document.hidden || !isVisible) {
         cancelAnimationFrame(raf);
-      } else {
+      } else if (started) {
         last = 0;
         raf = requestAnimationFrame(draw);
       }
@@ -112,6 +117,7 @@ export function MatrixRain({
     document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
+      clearTimeout(startTimer);
       cancelAnimationFrame(raf);
       document.removeEventListener("visibilitychange", onVisibility);
       ro.disconnect();

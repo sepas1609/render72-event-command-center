@@ -227,13 +227,13 @@
     color: var(--neon-rose);
     transform: translate(2px, 0);
     mix-blend-mode: screen;
-    animation: glitch-x 4s infinite steps(60);
+    animation: glitch-x 4s 1.2s infinite steps(60);
   }
   .glitch-text::after {
     color: var(--neon-cyan);
     transform: translate(-2px, 0);
     mix-blend-mode: screen;
-    animation: glitch-y 4s infinite steps(60);
+    animation: glitch-y 4s 1.2s infinite steps(60);
   }
 }
 

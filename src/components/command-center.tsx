@@ -350,7 +350,7 @@ export function CommandCenter({
 
             <div
               className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
-              role="list"
+              role="group"
               aria-label="Defense map challenge nodes"
             >
               {challenges.slice(0, 24).map((c, i) => (
@@ -367,6 +367,7 @@ export function CommandCenter({
 function DefenseNode({ node, index }: { node: ChallengeNode; index: number }) {
   const open = useCtfStoreBriefing(node.id);
   const color = CAT_COLORS[node.category] ?? "var(--neon)";
+  const visibleCategory = node.category.split(" ")[0];
   return (
     <motion.button
       type="button"
@@ -376,7 +377,7 @@ function DefenseNode({ node, index }: { node: ChallengeNode; index: number }) {
       transition={{ duration: 0.25, delay: Math.min(index * 0.015, 0.4) }}
       whileHover={{ y: -2 }}
       className="group relative aspect-square overflow-hidden rounded-lg border border-white/10 bg-black/40 p-2 text-left transition-colors hover:border-[var(--neon)]/40"
-      aria-label={`${node.title} — ${node.category} — ${node.difficulty} — ${node.points} points — ${node.solves} solves`}
+      aria-label={`${visibleCategory} ${node.difficulty} ${node.points} — ${node.title} — ${node.solves} solves`}
     >
       <div
         className="absolute inset-0 -z-10 opacity-25 transition-opacity group-hover:opacity-50"

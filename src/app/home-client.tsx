@@ -11,6 +11,7 @@ import { Footer } from "@/components/footer";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { useEvents } from "@/hooks/use-events";
 import { deriveScoreboard, pickPrimaryCtfEvent } from "@/lib/api";
+import { useCtfStore } from "@/lib/ctf-store";
 import type { EventSummary } from "@/lib/types";
 
 // Below-the-fold heavy dynamic components loaded asynchronously to achieve 0ms TBT and 95+ Mobile/Desktop Lighthouse
@@ -69,7 +70,11 @@ export function HomeClient({ initialEvents }: { initialEvents: EventSummary[] })
     [data, initialEvents],
   );
 
-  const primary = useMemo(() => pickPrimaryCtfEvent(events), [events]);
+  const activeEdition = useCtfStore((s) => s.activeEdition);
+  const primary = useMemo(
+    () => pickPrimaryCtfEvent(events, activeEdition),
+    [events, activeEdition],
+  );
   const scoreboard = useMemo(() => deriveScoreboard(events), [events]);
   const activeEvents = useMemo(
     () => events.filter((e) => e.event_status === "ACTIVE").length,

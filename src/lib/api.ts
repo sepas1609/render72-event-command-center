@@ -329,12 +329,20 @@ function deriveTelemetry(events: EventSummary[], ticks = 24): TelemetryPoint[] {
   return out;
 }
 
-function pickPrimaryCtfEvent(events: EventSummary[]): EventSummary | null {
+function pickPrimaryCtfEvent(
+  events: EventSummary[],
+  editionId = "2",
+): EventSummary | null {
+  if (editionId === "2") {
+    const REPAIR_CAFE_ID = "f4a7eca2-0363-5f01-96d8-40b80e7d3798";
+    return events.find((e) => e.id === REPAIR_CAFE_ID) ?? events[0] ?? null;
+  }
   const FLAGHORIZON_ID = "a6de479e-c82e-567a-a7a8-61207e455385";
   return (
     events.find((e) => e.id === FLAGHORIZON_ID) ??
     events.find((e) => e.is_technical && e.event_status === "ACTIVE") ??
     events.find((e) => e.is_technical) ??
+    events[0] ??
     null
   );
 }
