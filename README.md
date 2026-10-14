@@ -13,12 +13,13 @@
 
 ## 🔗 Verified Production Links & Live Endpoints
 
-- **Live Production URL (Vercel):** [https://render72-command-center.vercel.app](https://render72-command-center.vercel.app) *(Publicly accessible, HTTP 200, zero login required)*
+- **Live Production URL (Submission 2 — CampusPulse 360):** [https://campuspulse-360.vercel.app](https://campuspulse-360.vercel.app) *(Publicly accessible, HTTP 200, zero login required)*
+- **Live Production URL (Submission 1 — FlagHorizon Sentinel):** [https://render72-command-center.vercel.app](https://render72-command-center.vercel.app) *(Preserved & intact)*
 - **GitHub Repository:** [https://github.com/sepas1609/render72-event-command-center](https://github.com/sepas1609/render72-event-command-center)
-- **Active Submission Branch:** `submission/2-campuspulse`
+- **Active Submission 2 Branch:** [`submission/2-campuspulse`](https://github.com/sepas1609/render72-event-command-center/tree/submission/2-campuspulse)
 - **Official Data Source:** [Render72 Public Events API](https://render72.pages.dev)
 - **Figma Design System:** [https://www.figma.com/make/zxj9fMS5uKSFW0ziLkNkgs/Design-System-for-FlagHorizon-Sentinel?p=f&t=k195pAe5QwQxbqGG-0](https://www.figma.com/make/zxj9fMS5uKSFW0ziLkNkgs/Design-System-for-FlagHorizon-Sentinel?p=f&t=k195pAe5QwQxbqGG-0)
-- **Production Health Probe:** [https://render72-command-center.vercel.app/api/health](https://render72-command-center.vercel.app/api/health)
+- **Production Health Probe:** [https://campuspulse-360.vercel.app/api/health](https://campuspulse-360.vercel.app/api/health)
 - **Figma Design Directive:** [Jump to Figma Design Specification](#-figma-design-directive-specification)
 
 ---
